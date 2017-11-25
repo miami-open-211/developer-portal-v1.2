@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  title: "Holmes County Human Services Data Management API"
+  title: "Miami Open 211 Human Services Data Management API"
   description: "This is a complimentary API to the HSDA API focusing just on management."
   termsOfService: "https://openreferral.org/documentation/"
   contact:
@@ -11,7 +11,7 @@ info:
     name: Open Data Commons Public Domain
     url: http://opendatacommons.org/licenses/pddl/
   version: v1.0
-host: holmes.county.hsda.management.api.adopta.agency
+host: miami.open.211.hsda.management.api.adopta.agency
 basePath: /
 schemes:
 - http
