@@ -50,96 +50,24 @@ layout: page
   </defs>
 </svg>
 
-<!-- Banner -->
-<section id="banner">
-	<div class="content">
-		<header>
-			<h2>Miami Open 211 API (HSDA)</h2>
-		</header>
-		<p>This is a portal for the Miami Open 211 API (HSDA) implementation. It provides data access to the human services data stored in the database, and allows for building of applications on top of the API.</p>
-    <p>All read (GET) API paths are publicly available, while being able to add (POST), update (POST), and delete (DELETE) data from the system requires authentication using a valid Github account. All transactions are record via the HSDA meta system, providing a log of everything that occurs.</p>
-    <p>You will find instructions below for getting started, authenticating, interactive documentation, and support.</p>
-	</div>
-	<span class="image object">
-		<a href="http://developer.holmes.county.adopta.agency/"><img src="/images/openreferral-expanded.png" alt="" /></a>
-	</span>
-</section>
-
-<!-- Full -->
+<!-- Search -->
 <section>
 	<header>
-		<a name="Getting Started"></a>
-		<h2>Getting Started</h2>
+		<a name="HSDA Search"></a>
+		<h2>Human Services Data API (HSDA) Search (v1.2)</h2>
 	</header>
-  <p>There are six separate microservices contained as part of this Human Services Data API (HSDA) work. HSDA is the core service, focusing on the management of organizations, locations, services, contacts, and their sub-resources (ie. addresses, phones, etc.). The other seven microservices are meant to be standalone services that augment the core HSDA service.</p>
-  <p>Here is a quick list of the eight services, which there are separate documentation available below:</p>
-  <ul>
-    <li><strong><a href="/#HSDA Full">HSDA Full</a></strong> - The core service for managing organizations, locations, services, contacts, and other sub-resouces in single API calls.</li>
-    <li><strong><a href="/#HSDA">HSDA</a></strong> - The core service for managing organizations, locations, services, contacts, and other sub-resouces.</li>
-    <li><strong><a href="/#HSDA Search">HSDA Search</a></strong> - A spin-off search service from the core service, focusing exclusively on searching across HSDA resources.</li>
-    <li><strong><a href="/#HSDA Meta">HSDA Meta</a></strong> - An independent service for recording all transactions executed via any HSDA implementation, providing comprehensive logging.</li>
-    <li><strong><a href="/#HSDA Management">HSDA Management</a></strong> - The simple API management layer for HSDA, leveraging Github authentication to be able to make calls to HSDA APIs.</li>
-    <li><strong><a href="/#HSDA Utility">HSDA Utility</a></strong> - A set of utility APIs for manaing HSDA services, including validation, security, and other operational level needs for implementations.</li>
-  </ul>
-  <p>To get started I recommend beginning with authentication which will get you an API key allowing you to make calls across all services, not just the public GET resources. Then spend time with the interactive documentation for each service to better understand how they work independently, but also in concert with each other. It is meant to provide a buffet of HSDA services that work together, operate independently, and can be moved forward as separate projects.</p>
-</section>
-
-<!-- Banner -->
-<section id="banner">
-	<div class="content">
-		<header>
-      <a name="Authentication"></a>
-			<h2 id="auth-header">Authentication</h2>
-		</header>
-		<p>This implementation of HSDA leverages Github as the authentication layer for the API. Most of the GET API paths are open to the public, but any POST, PUT, DELETE, and management level APIs require an appid and appkey to accompay each request as headers.</p>
-    <p>Click on the Github logo to authentice using your Github account. The OAuth flow will take you back to this portal, adding you to the HSDA Management layer, showing you what your access keys will be. Each API call will have to contain:
-    <ul id="auth-keys">
-      <li id="auth-appid"><strong>x-appid</strong> - Your Github user.</li>
-      <li id="auth-appkey"><strong>x-appkey</strong> - Your Github token.</li>
-    </ul>
-    <script type="text/javascript">
-      $appid = getUrlVar('login');
-      console.log($appid);
-      $appkey = getUrlVar('code');
-      console.log($appkey);
-      if($appid != '' && $appkey != '')
-        {
-        $('#auth-keys').html('');
-        $appid_link = '<li><strong>x-appid</strong> - ' + $appid + '</li>';
-        //console.log($appid_link)
-        $appkey_link = '<li><strong>x-appkey</strong> - ' + $appkey + '</li>';
-        //console.log($appkey_link)
-        $auth_html = '<ul>' + $appid_link + $appkey_link + '</ul>';
-        $('#auth-keys').html($auth_html);
-        $('#auth-header').html('Authentication (AUTHENTICATED)');
-        }
-    </script>
-    <p>The HSDA Management service will validate your appid and appkey as being a valid Github account and token, then give access to make calls to all API paths, across all services. Invalid API requests will receive a 403 status code for any API requests.</p>
-    <p>Any valid Github user and token will work with the API, you do not need to login via the portal every time you are looking to get access for any future applications.</p>
-	</div>
-	<span class="image object">
-		<a href="http://holmes.county.hsda.github.adopta.agency/developer/?action=login"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-github-square.png" alt="" width="100%" /></a>
-	</span>
-</section>
-
-<!-- Full -->
-<section>
-	<header>
-		<a name="HSDA Full"></a>
-		<h2>Human Services Data API (HSDA) Full  (v1.2)</h2>
-	</header>
-  <p>This is the interactive documentation for the core set of Human Services Data API (HSDA) resources. If you are looking to get a full responses for all core resources, as well as their sub-resources in a single API call, these are the paths for you. These four endpoints will return full responses for each resource in a single response.</p>
-  <div id="hsda-full-ui"></div>
-  <p>This set of paths are intended to be about working with core resouces (ie. organizations, locations, contacts and services), there are other spearate HSDA services that give you access to a variety of systems that support, augment, and work with the core set of Human Services Data API (HSDA) services.</p>
+  <p>This is a separate HSDA service for searching across all the core human sevices resources, pulling data with refined search criteria, separating search concerns from just working with individual human service resources.</p>
+  <div id="hsda-search-ui"></div>
+  <p>This service was split off the core HSDA specification with the evolution of v1.2, making it it's own project, and sepaate specification from the core set of resources for working with HSDA information within any implementation.</p>
 </section>
 
 <script>
 window.onload = function() {
 
-  // HSDS
-  const hsda_full_ui = SwaggerUIBundle({
-    url: "{{ site.url }}openapi/hsda-full.yaml",
-    dom_id: '#hsda-full-ui',
+  // HSDS Search
+  const hsda_search_ui = SwaggerUIBundle({
+    url: "https://raw.githubusercontent.com/{{ site.github_org}}/{{ site.github_repo}}/master/_data/api-commons/openapi-hsda-search.yaml",
+    dom_id: '#hsda-search-ui',
     presets: [
       SwaggerUIBundle.presets.apis,
       SwaggerUIStandalonePreset
@@ -149,40 +77,7 @@ window.onload = function() {
     ],
     layout: "StandaloneLayout"
   })
-  window.ui = hsda_full_ui;
+  window.ui = hsda_search_ui;
 
 }
 </script>
-
-<section id="banner">
-	<div class="content">
-		<header>
-			<h2>Support</h2>
-		</header>
-		<p>There are three ways that you can get support when using this API--consider one of the following channels when you have a question, comment, or some feedback regarding the API and integration.</p>
-		<table cellpadding="10" cellspacing="10" width="100%">
-			<tr style="border: 1px solid #FFF;">
-
-				<td align="center" valign="top" style="background-color:#FFF;">
-					<a href="https://github.com/{{ site.github_org}}/{{ site.github_repo}}/issues"><img src="/images/bw-github.png" width="75" align="center"></a>
-					<a href="https://github.com/{{ site.github_org}}/{{ site.github_repo}}/issues">Github</a>
-				</td>
-
-				<td align="center" valign="top" style="background-color:#FFF;">
-					<a href="https://twitter.com/apievangelist/"><img src="/images/bw-twitter-icon.png" width="75" align="center"></a>
-					<a href="https://twitter.com/apievangelist/">Twitter</a>
-				</td>
-
-				<td align="center" valign="top" style="background-color:#FFF;">
-					<a href="/cdn-cgi/l/email-protection#e38a8d858ca382938a8695828d84868f8a9097cd808c8e"><img src="/images/bw-email-at.png" width="75" align="center"></a>
-					<a href="mailto:info@apievangelist.com">Email</a>
-				</td>
-
-			</tr>
-		</table>
-		<p>It is recommended that you start with submitting a Github issue, then maybe tweet at us. If your questions or comments require some privacy you should use email. Make sure you look through the existing issues before submitting a new one.</p>
-	</div>
-	<span class="image object">
-		<img src="/images/support-rectangular.png" alt="" width="5%" />
-	</span>
-</section>

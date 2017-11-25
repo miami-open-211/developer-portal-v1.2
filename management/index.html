@@ -50,24 +50,24 @@ layout: page
   </defs>
 </svg>
 
-<!-- Full -->
+<!-- Management -->
 <section>
 	<header>
-		<a name="HSDA Full"></a>
-		<h2>Human Services Data API (HSDA)  (v1.2)</h2>
+		<a name="HSDA Management"></a>
+		<h2>Human Services Data API (HSDA) Management (v1.2)</h2>
 	</header>
-  <p>This is the interactive documentation for the core set of Human Services Data API (HSDA) resources. If you are looking to get a full responses for all core resources, as well as their sub-resources in a single API call, these are the paths for you. These four endpoints will return full responses for each resource in a single response.</p>
-  <div id="hsda-full-ui"></div>
-  <p>This set of paths are intended to be about working with core resouces (ie. organizations, locations, contacts and services), there are other spearate HSDA services that give you access to a variety of systems that support, augment, and work with the core set of Human Services Data API (HSDA) services.</p>
+  <p>This is a HSDA sevice specificaly intended to assist in managing HSDA access, allowing users to get at resources made available any HSDA implementation. Providing the ability to manage users, and the HSDA services they have access to.</p>
+  <div id="hsda-management-ui"></div>
+  <p>This is the API management layer for the HSDA implementation, providing a simple solution that API providers can manage this aspect of operation. Behind the scenes this could be executed with off the shelf API management solutions. The purpose of this is to provide a common API for use across all HSDA implementations.</p>
 </section>
 
 <script>
 window.onload = function() {
 
-  // HSDS
-  const hsda_full_ui = SwaggerUIBundle({
-    url: "{{ site.url }}openapi/hsda-full.yaml",
-    dom_id: '#hsda-full-ui',
+  // HSDS Management
+  const hsda_management_ui = SwaggerUIBundle({
+    url: "https://raw.githubusercontent.com/{{ site.github_org}}/{{ site.github_repo}}/master/_data/api-commons/openapi-hsda-management.yaml",
+    dom_id: '#hsda-management-ui',
     presets: [
       SwaggerUIBundle.presets.apis,
       SwaggerUIStandalonePreset
@@ -77,40 +77,7 @@ window.onload = function() {
     ],
     layout: "StandaloneLayout"
   })
-  window.ui = hsda_full_ui;
+  window.ui = hsda_management_ui;
 
 }
 </script>
-
-<section id="banner">
-	<div class="content">
-		<header>
-			<h2>Support</h2>
-		</header>
-		<p>There are three ways that you can get support when using this API--consider one of the following channels when you have a question, comment, or some feedback regarding the API and integration.</p>
-		<table cellpadding="10" cellspacing="10" width="100%">
-			<tr style="border: 1px solid #FFF;">
-
-				<td align="center" valign="top" style="background-color:#FFF;">
-					<a href="https://github.com/{{ site.github_org}}/{{ site.github_repo}}/issues"><img src="/images/bw-github.png" width="75" align="center"></a>
-					<a href="https://github.com/{{ site.github_org}}/{{ site.github_repo}}/issues">Github</a>
-				</td>
-
-				<td align="center" valign="top" style="background-color:#FFF;">
-					<a href="https://twitter.com/apievangelist/"><img src="/images/bw-twitter-icon.png" width="75" align="center"></a>
-					<a href="https://twitter.com/apievangelist/">Twitter</a>
-				</td>
-
-				<td align="center" valign="top" style="background-color:#FFF;">
-					<a href="/cdn-cgi/l/email-protection#e38a8d858ca382938a8695828d84868f8a9097cd808c8e"><img src="/images/bw-email-at.png" width="75" align="center"></a>
-					<a href="mailto:info@apievangelist.com">Email</a>
-				</td>
-
-			</tr>
-		</table>
-		<p>It is recommended that you start with submitting a Github issue, then maybe tweet at us. If your questions or comments require some privacy you should use email. Make sure you look through the existing issues before submitting a new one.</p>
-	</div>
-	<span class="image object">
-		<img src="/images/support-rectangular.png" alt="" width="5%" />
-	</span>
-</section>
