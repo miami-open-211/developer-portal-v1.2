@@ -1,1 +1,10 @@
-theme: jekyll-theme-cayman
+name: Miami Open 211
+url: http://developer.holmes.county.adopta.agency/
+
+author:
+  name: 'Kin Lane'
+  email: 'info@apievangelist.com'
+markdown: kramdown
+
+github_org: miami-open-211
+github_repo: developer-portal-v1.2
