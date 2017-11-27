@@ -57,7 +57,7 @@ layout: page
 			<h2>Miami Open 211 API (HSDA)</h2>
 		</header>
 		<p>This is a portal for the Miami Open 211 API (HSDA) implementation. It provides data access to the human services data stored in the database, and allows for building of applications on top of the API.</p>
-    <p>All read (GET) API paths are publicly available, while being able to add (POST), update (POST), and delete (DELETE) data from the system requires authentication using a valid Github account. All transactions are record via the HSDA meta system, providing a log of everything that occurs.</p>
+    <p>All read (GET) APIs are publicly available, while being able to add (POST), update (POST), and delete (DELETE) data from the system requires authentication using a valid Github account. All transactions are record via the HSDA meta system, providing a log of everything that occurs using HSDA Meta.</p>
     <p>You will find instructions below for getting started, authenticating, interactive documentation, and support.</p>
 	</div>
 	<span class="image object">
@@ -77,9 +77,9 @@ layout: page
     <li><strong><a href="/#HSDA Full">HSDA Full</a></strong> - The core service for managing organizations, locations, services, contacts, and other sub-resouces in single API calls.</li>
     <li><strong><a href="/detail/">HSDA Detailed</a></strong> - The core service for managing organizations, locations, services, contacts, and other sub-resouces.</li>
     <li><strong><a href="/search/">HSDA Search</a></strong> - A spin-off search service from the core service, focusing exclusively on searching across HSDA resources.</li>
+    <li><strong><a href="/taxonomy/">HSDA Taxonomy</a></strong> - An independent service for managng taxonomy used by the core set of services. It uses Open Elgibility currently.</li>
     <li><strong><a href="/meta/">HSDA Meta</a></strong> - An independent service for recording all transactions executed via any HSDA implementation, providing comprehensive logging.</li>
     <li><strong><a href="/management/">HSDA Management</a></strong> - The simple API management layer for HSDA, leveraging Github authentication to be able to make calls to HSDA APIs.</li>
-    <li><strong><a href="/utility/">HSDA Utility</a></strong> - A set of utility APIs for manaing HSDA services, including validation, security, and other operational level needs for implementations.</li>
   </ul>
   <p>To get started I recommend beginning with authentication which will get you an API key allowing you to make calls across all services, not just the public GET resources. Then spend time with the interactive documentation for each service to better understand how they work independently, but also in concert with each other. It is meant to provide a buffet of HSDA services that work together, operate independently, and can be moved forward as separate projects.</p>
 </section>
@@ -118,7 +118,7 @@ layout: page
     <p>Any valid Github user and token will work with the API, you do not need to login via the portal every time you are looking to get access for any future applications.</p>
 	</div>
 	<span class="image object">
-		<a href="http://holmes.county.hsda.github.adopta.agency/developer/?action=login"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-github-square.png" alt="" width="100%" /></a>
+		<a href="http://miami.open.211.hsda.github.adopta.agency/developer/?action=login"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-github-square.png" alt="" width="100%" /></a>
 	</span>
 </section>
 
@@ -126,7 +126,7 @@ layout: page
 <section>
 	<header>
 		<a name="HSDA Full"></a>
-		<h2>Human Services Data API (HSDA) Full  (v1.2)</h2>
+		<h2>Human Services Data API (HSDA) Full (v1.2)</h2>
 	</header>
   <p>This is the interactive documentation for the core set of Human Services Data API (HSDA) resources. If you are looking to get a full responses for all core resources, as well as their sub-resources in a single API call, these are the paths for you. These four endpoints will return full responses for each resource in a single response.</p>
   <div id="hsda-full-ui"></div>
