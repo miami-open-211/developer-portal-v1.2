@@ -56,13 +56,11 @@ layout: page
 		<header>
 			<h2>Miami Open 211 API (HSDA)</h2>
 		</header>
+    <p><a href="http://miami.open.211.developer.adopta.agency/"><img src="/images/openreferral-expanded.png" alt="" align="right" width="25%" /></a></p>
 		<p>This is a portal for the Miami Open 211 API (HSDA) implementation. It provides data access to the human services data stored in the database, and allows for building of applications on top of the API.</p>
     <p>All read (GET) APIs are publicly available, while being able to add (POST), update (POST), and delete (DELETE) data from the system requires authentication using a valid Github account. All transactions are record via the HSDA meta system, providing a log of everything that occurs using HSDA Meta.</p>
     <p>You will find instructions below for getting started, authenticating, interactive documentation, and support.</p>
 	</div>
-	<span class="image object">
-		<a href="http://miami.open.211.developer.adopta.agency/"><img src="/images/openreferral-expanded.png" alt="" /></a>
-	</span>
 </section>
 
 <!-- Full -->
@@ -91,6 +89,7 @@ layout: page
       <a name="Authentication"></a>
 			<h2 id="auth-header">Authentication</h2>
 		</header>
+    <p><a href="http://miami.open.211.hsda.github.adopta.agency/developer/?action=login"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-github-square.png" alt="" width="25%" align="right" /></a></p>
 		<p>This implementation of HSDA leverages Github as the authentication layer for the API. Most of the GET API paths are open to the public, but any POST, PUT, DELETE, and management level APIs require an appid and appkey to accompay each request as headers.</p>
     <p>Click on the Github logo to authentice using your Github account. The OAuth flow will take you back to this portal, adding you to the HSDA Management layer, showing you what your access keys will be. Each API call will have to contain:
     <ul id="auth-keys">
@@ -117,9 +116,6 @@ layout: page
     <p>The HSDA Management service will validate your appid and appkey as being a valid Github account and token, then give access to make calls to all API paths, across all services. Invalid API requests will receive a 403 status code for any API requests.</p>
     <p>Any valid Github user and token will work with the API, you do not need to login via the portal every time you are looking to get access for any future applications.</p>
 	</div>
-	<span class="image object">
-		<a href="http://miami.open.211.hsda.github.adopta.agency/developer/?action=login"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-github-square.png" alt="" width="100%" /></a>
-	</span>
 </section>
 
 <!-- Full -->
