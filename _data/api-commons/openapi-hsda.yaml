@@ -20,543 +20,6 @@ produces:
 - application/xml
 - text/csv
 paths:
-  /contacts/:
-    get:
-      summary: Get Contacts
-      description: Get Contacts
-      operationId: listContacts
-      parameters:
-        - in: query
-          type: string
-          name: query
-          description: A query to filter list by (up to provider to determine what to search)
-        - in: query
-          type: string
-          name: queries
-          description: A comma separate list of queries with specific fields.
-        - in: query
-          type: number
-          name: page
-          default: 0
-          description: The particular page of results.
-        - in: query
-          type: number
-          name: per_page
-          default: 25
-          description: Number of records to return per page, up to 100.
-        - in: query
-          type: string
-          name: sort_by
-          default: name
-          description: Which field to sort by.
-        - in: query
-          type: string
-          name: order
-          default: asc
-          description: Which order to sort by (asc,desc).
-      responses:
-        '200':
-          description: Contact Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/contact"
-        '500':
-          description: Error Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-      tags:
-      - Contacts
-    post:
-      summary: Add Contact
-      description: Add contact
-      operationId: addContact
-      parameters:
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/contact'
-      security:
-        - appid: []
-        - appkey: []
-      responses:
-        '200':
-          description: Contact Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/contact"
-        '403':
-          description: No Access Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-        '500':
-          description: Error Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-      tags:
-      - Contacts
-  /contacts/full/:
-    get:
-      summary: Get Contacts (Full)
-      description: Get Contacts (Full)
-      operationId: listContactsFull
-      parameters:
-        - in: query
-          type: string
-          name: query
-          description: A query to filter list by (up to provider to determine what to search)
-        - in: query
-          type: string
-          name: queries
-          description: A comma separate list of queries with specific fields.
-        - in: query
-          type: number
-          name: page
-          default: 0
-          description: The particular page of results.
-        - in: query
-          type: number
-          name: per_page
-          default: 25
-          description: Number of records to return per page, up to 100.
-        - in: query
-          type: string
-          name: sort_by
-          default: name
-          description: Which field to sort by.
-        - in: query
-          type: string
-          name: order
-          default: asc
-          description: Which order to sort by (asc,desc).
-      responses:
-        '200':
-          description: Contact Full Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/contact_full"
-        '500':
-          description: Error Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-      tags:
-      - Contacts
-    post:
-      summary: Add Contact (Full)
-      description: Add Contact (Full)
-      operationId: addContactsFull
-      parameters:
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/contact_full'
-      security:
-        - appid: []
-        - appkey: []
-      responses:
-        '200':
-          description: Contact Full Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/contact_full"
-        '403':
-          description: No Access Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-        '500':
-          description: Error Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-      tags:
-      - Contacts
-  /contacts/full/{contact_id}/:
-    get:
-      summary: Get Contacts (Full)
-      description: Get Contacts (Full)
-      operationId: getContactFull
-      parameters:
-        - in: path
-          required: true
-          type: string
-          name: contact_id
-          description: The contact id.
-      responses:
-        '200':
-          description: Contact Full Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/contact_full"
-        '500':
-          description: Error Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-      tags:
-      - Contacts
-    put:
-      summary: Update Contact (Full)
-      description: Update Contact (Full)
-      operationId: updateContactsFull
-      parameters:
-        - in: path
-          required: true
-          type: string
-          name: contact_id
-          description: The contact id.
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/contact_full'
-      security:
-        - appid: []
-        - appkey: []
-      responses:
-        '200':
-          description: Contact Full Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/contact_full"
-        '403':
-          description: No Access Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-        '500':
-          description: Error Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-      tags:
-      - Contacts
-    delete:
-      summary: Delete Contact
-      description: Delete Contact
-      operationId: deleteContact
-      parameters:
-        - in: path
-          required: true
-          type: string
-          name: contact_id
-          description: 'The contact id.'
-      tags:
-      - Contacts
-      security:
-      - appid: []
-      - appkey: []
-      responses:
-        '200':
-          description: Contact Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/contact"
-        '403':
-          description: No Access Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-        '500':
-          description: Error Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-  /contacts/{contact_id}/:
-    get:
-      summary: Get Contact
-      description: Get Contact
-      operationId: getContact
-      parameters:
-        - in: path
-          required: true
-          type: string
-          name: contact_id
-          description: 'The contact id.'
-      responses:
-        '200':
-          description: Contact Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/contact"
-        '500':
-          description: Error Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-      tags:
-      - Contacts
-    put:
-      summary: Update Contact
-      description: Update an existing contact.
-      operationId: updateContact
-      parameters:
-        - in: path
-          required: true
-          type: string
-          name: contact_id
-          description: 'The contact id.'
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/contact'
-      security:
-        - appid: []
-        - appkey: []
-      responses:
-        '200':
-          description: Contact Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/contact"
-        '403':
-          description: No Access Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-        '500':
-          description: Error Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-      tags:
-      - Contacts
-    delete:
-      summary: Delete Contact
-      description: Delete Contact
-      operationId: deleteContactFull
-      parameters:
-        - in: path
-          required: true
-          type: string
-          name: contact_id
-          description: 'The contact id.'
-      tags:
-      - Contacts
-      security:
-      - appid: []
-      - appkey: []
-      responses:
-        '200':
-          description: Contact Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/contact"
-        '403':
-          description: No Access Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-        '500':
-          description: Error Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-  /contacts/{contact_id}/phones/:
-    get:
-      summary: Get Phones
-      description: Get Phones
-      operationId: listContactPhones
-      parameters:
-        - in: path
-          required: true
-          type: string
-          name: contact_id
-          description: 'The unique contact id.'
-      responses:
-        '200':
-          description: Phone Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/phone"
-        '500':
-          description: Error Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-      tags:
-      - Contacts
-    post:
-      summary: Add Phone
-      description: Add Phone
-      operationId: addContactPhone
-      parameters:
-        - in: path
-          required: true
-          type: string
-          name: contact_id
-          description: 'The unique contact id.'
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/phone'
-      security:
-        - appid: []
-        - appkey: []
-      responses:
-        '200':
-          description: Phone Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/phone"
-        '403':
-          description: No Access Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-        '500':
-          description: Error Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-      tags:
-      - Contacts
-  /contacts/{contact_id}/phones/{phone_id}/:
-    get:
-      summary: Get Phone
-      description: get Phone
-      operationId: getContactPhone
-      parameters:
-        - in: path
-          required: true
-          type: string
-          name: contact_id
-          description: The unique contact id.
-        - in: path
-          required: true
-          type: string
-          name: phone_id
-          description: The unique phone id.
-      responses:
-        '200':
-          description: Contact Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/phone"
-        '500':
-          description: Error Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-      tags:
-      - Contacts
-    put:
-      summary: Update Phone
-      description: Update Phone
-      operationId: updateContactPhone
-      parameters:
-        - in: path
-          required: true
-          type: string
-          name: contact_id
-          description: 'The unique contact id.'
-        - in: path
-          required: true
-          type: string
-          name: phone_id
-          description: 'The unique phone id.'
-        - in: body
-          name: body
-          schema:
-            $ref: '#/definitions/phone'
-      security:
-        - appid: []
-        - appkey: []
-      responses:
-        '200':
-          description: Phone Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/phone"
-        '403':
-          description: No Access Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-        '500':
-          description: Error Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-      tags:
-      - Contacts
-    delete:
-      summary: Delete Phone
-      description: Delete Phone
-      operationId: deleteContactPhone
-      parameters:
-        - in: path
-          required: true
-          type: string
-          name: contact_id
-          description: 'The unique contact id.'
-        - in: path
-          required: true
-          type: string
-          name: phone_id
-          description: 'The unique phone id.'
-      security:
-        - appid: []
-        - appkey: []
-      responses:
-        '200':
-          description: Phone Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/phone"
-        '403':
-          description: No Access Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-        '500':
-          description: Error Response
-          schema:
-            type: array
-            items:
-              $ref: "#/definitions/error_response"
-      tags:
-      - Contacts
   /locations/:
     get:
       summary: Get Locations
@@ -6144,6 +5607,543 @@ paths:
               $ref: "#/definitions/error_response"
       tags:
       - Services
+  /contacts/:
+    get:
+      summary: Get Contacts
+      description: Get Contacts
+      operationId: listContacts
+      parameters:
+        - in: query
+          type: string
+          name: query
+          description: A query to filter list by (up to provider to determine what to search)
+        - in: query
+          type: string
+          name: queries
+          description: A comma separate list of queries with specific fields.
+        - in: query
+          type: number
+          name: page
+          default: 0
+          description: The particular page of results.
+        - in: query
+          type: number
+          name: per_page
+          default: 25
+          description: Number of records to return per page, up to 100.
+        - in: query
+          type: string
+          name: sort_by
+          default: name
+          description: Which field to sort by.
+        - in: query
+          type: string
+          name: order
+          default: asc
+          description: Which order to sort by (asc,desc).
+      responses:
+        '200':
+          description: Contact Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contact"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Contacts
+    post:
+      summary: Add Contact
+      description: Add contact
+      operationId: addContact
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/contact'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Contact Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contact"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Contacts
+  /contacts/full/:
+    get:
+      summary: Get Contacts (Full)
+      description: Get Contacts (Full)
+      operationId: listContactsFull
+      parameters:
+        - in: query
+          type: string
+          name: query
+          description: A query to filter list by (up to provider to determine what to search)
+        - in: query
+          type: string
+          name: queries
+          description: A comma separate list of queries with specific fields.
+        - in: query
+          type: number
+          name: page
+          default: 0
+          description: The particular page of results.
+        - in: query
+          type: number
+          name: per_page
+          default: 25
+          description: Number of records to return per page, up to 100.
+        - in: query
+          type: string
+          name: sort_by
+          default: name
+          description: Which field to sort by.
+        - in: query
+          type: string
+          name: order
+          default: asc
+          description: Which order to sort by (asc,desc).
+      responses:
+        '200':
+          description: Contact Full Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contact_full"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Contacts
+    post:
+      summary: Add Contact (Full)
+      description: Add Contact (Full)
+      operationId: addContactsFull
+      parameters:
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/contact_full'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Contact Full Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contact_full"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Contacts
+  /contacts/full/{contact_id}/:
+    get:
+      summary: Get Contacts (Full)
+      description: Get Contacts (Full)
+      operationId: getContactFull
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contact_id
+          description: The contact id.
+      responses:
+        '200':
+          description: Contact Full Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contact_full"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Contacts
+    put:
+      summary: Update Contact (Full)
+      description: Update Contact (Full)
+      operationId: updateContactsFull
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contact_id
+          description: The contact id.
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/contact_full'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Contact Full Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contact_full"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Contacts
+    delete:
+      summary: Delete Contact
+      description: Delete Contact
+      operationId: deleteContact
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contact_id
+          description: 'The contact id.'
+      tags:
+      - Contacts
+      security:
+      - appid: []
+      - appkey: []
+      responses:
+        '200':
+          description: Contact Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contact"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+  /contacts/{contact_id}/:
+    get:
+      summary: Get Contact
+      description: Get Contact
+      operationId: getContact
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contact_id
+          description: 'The contact id.'
+      responses:
+        '200':
+          description: Contact Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contact"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Contacts
+    put:
+      summary: Update Contact
+      description: Update an existing contact.
+      operationId: updateContact
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contact_id
+          description: 'The contact id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/contact'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Contact Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contact"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Contacts
+    delete:
+      summary: Delete Contact
+      description: Delete Contact
+      operationId: deleteContactFull
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contact_id
+          description: 'The contact id.'
+      tags:
+      - Contacts
+      security:
+      - appid: []
+      - appkey: []
+      responses:
+        '200':
+          description: Contact Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/contact"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+  /contacts/{contact_id}/phones/:
+    get:
+      summary: Get Phones
+      description: Get Phones
+      operationId: listContactPhones
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contact_id
+          description: 'The unique contact id.'
+      responses:
+        '200':
+          description: Phone Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/phone"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Contacts
+    post:
+      summary: Add Phone
+      description: Add Phone
+      operationId: addContactPhone
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contact_id
+          description: 'The unique contact id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/phone'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Phone Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/phone"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Contacts
+  /contacts/{contact_id}/phones/{phone_id}/:
+    get:
+      summary: Get Phone
+      description: get Phone
+      operationId: getContactPhone
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contact_id
+          description: The unique contact id.
+        - in: path
+          required: true
+          type: string
+          name: phone_id
+          description: The unique phone id.
+      responses:
+        '200':
+          description: Contact Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/phone"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Contacts
+    put:
+      summary: Update Phone
+      description: Update Phone
+      operationId: updateContactPhone
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contact_id
+          description: 'The unique contact id.'
+        - in: path
+          required: true
+          type: string
+          name: phone_id
+          description: 'The unique phone id.'
+        - in: body
+          name: body
+          schema:
+            $ref: '#/definitions/phone'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Phone Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/phone"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Contacts
+    delete:
+      summary: Delete Phone
+      description: Delete Phone
+      operationId: deleteContactPhone
+      parameters:
+        - in: path
+          required: true
+          type: string
+          name: contact_id
+          description: 'The unique contact id.'
+        - in: path
+          required: true
+          type: string
+          name: phone_id
+          description: 'The unique phone id.'
+      security:
+        - appid: []
+        - appkey: []
+      responses:
+        '200':
+          description: Phone Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/phone"
+        '403':
+          description: No Access Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+        '500':
+          description: Error Response
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/error_response"
+      tags:
+      - Contacts      
   /phones/:
     get:
       summary: Get Phones
