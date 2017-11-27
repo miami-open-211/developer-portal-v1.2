@@ -8,8 +8,8 @@
     {% for info in contactinfo %}
       {% if info.category != 'Phone' and info.category != 'Work' %}
         <tr>
-          <td width="25%" align="center" valign="middle"><a href="{{ info.url }}" target="_blank"><img src="{{ info.image }}" width="25" style="padding: 2px;" align="center" /></a></td>
-          <td width="75%" align="center" valign="middle"><a href="{{ info.url }}" target="_blank">Contact Us Via {{ info.name }}</a></td>
+          <td width="25%" align="left" valign="middle"><a href="{{ info.url }}" target="_blank"><img src="{{ info.image }}" width="25" style="padding: 2px;" align="center" /></a></td>
+          <td width="75%" align="left" valign="middle"><a href="{{ info.url }}" target="_blank">Contact Us Via {{ info.name }}</a></td>
       </tr>
       {% endif %}
     {% endfor %}
