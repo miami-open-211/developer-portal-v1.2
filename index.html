@@ -118,26 +118,6 @@ layout: page
 	</div>
 </section>
 
-<!-- Banner -->
-<section id="banner">
-	<div class="content">
-		<header>
-      <a name="Authentication"></a>
-			<h2 id="auth-header">Base URL</h2>
-		</header>
-    <p><a href="http://miami.open.211.hsda.github.adopta.agency/developer/?action=login"><img src="https://s3.amazonaws.com/kinlane-productions/bw-icons/bw-github-square.png" alt="" width="25%" align="right" /></a></p>
-		<p>This implementation of HSDA leverages Github as the authentication layer for the API. Most of the GET API paths are open to the public, but any POST, PUT, DELETE, and management level APIs require an appid and appkey to accompay each request as headers.</p>
-    <p>Click on the Github logo to authentice using your Github account. The OAuth flow will take you back to this portal, adding you to the HSDA Management layer, showing you what your access keys will be. Each API call will have to contain:
-    <ul id="auth-keys">
-      <li id="auth-appid"><strong>x-appid</strong> - Your Github user.</li>
-      <li id="auth-appkey"><strong>x-appkey</strong> - Your Github token.</li>
-    </ul>
-    <p>The HSDA Management service will validate your appid and appkey as being a valid Github account and token, then give access to make calls to all API paths, across all services. Invalid API requests will receive a 403 status code for any API requests.</p>
-    <p>Any valid Github user and token will work with the API, you do not need to login via the portal every time you are looking to get access for any future applications.</p>
-	</div>
-</section>
-
-<!-- Full -->
 <section>
 	<header>
 		<a name="HSDA Base"></a>
@@ -148,6 +128,18 @@ layout: page
     <li>http://miami.open.211.hsda.api.adopta.agency/</li>
   </ul>
   <p>The documentation below will allow you make live API calls to the API, but the base URL will get you going.</p>
+</section>
+
+
+<!-- Full -->
+<section>
+	<header>
+		<a name="HSDA Full"></a>
+		<h2>Human Services Data API (HSDA) Full (v1.2)</h2>
+	</header>
+  <p>This is the interactive documentation for the core set of Human Services Data API (HSDA) resources. If you are looking to get a full responses for all core resources, as well as their sub-resources in a single API call, these are the paths for you. These four endpoints will return full responses for each resource in a single response.</p>
+  <div id="hsda-full-ui"></div>
+  <p>This set of paths are intended to be about working with core resouces (ie. organizations, locations, contacts and services), there are other spearate HSDA services that give you access to a variety of systems that support, augment, and work with the core set of Human Services Data API (HSDA) services.</p>
 </section>
 
 <script>
