@@ -1,4 +1,5 @@
-## Holmes County Human Services Data API Portal
-This is the Holmes County Human Services Data API portal.
+## This project is deprecated
+The Miami Open211 Project's final report is here: https://openreferral.org/miami-open211-developing-new-business-models-for-resource-data-as-a-service/
 
-URL: http://developer.holmes.county.adopta.agency/
+Go to [Open Referral's Human Service Data API repository](https://github.com/openreferral/api-specification) to learn more about the developer portal.
+
